@@ -8,6 +8,7 @@ import com.localhost.pitchperfect.application.port.out.PlayerPersistencePort;
 import com.localhost.pitchperfect.application.port.out.TeamPersistencePort;
 import com.localhost.pitchperfect.domain.model.Match;
 import com.localhost.pitchperfect.domain.model.MatchEvent;
+import com.localhost.pitchperfect.domain.model.MatchEventType;
 import com.localhost.pitchperfect.domain.model.Player;
 import com.localhost.pitchperfect.domain.model.Team;
 import com.localhost.pitchperfect.domain.service.MatchDomainService;
@@ -167,5 +168,69 @@ public class MatchService implements MatchUseCase {
         return match.getEvents().stream()
                 .map(matchMapper::toEventDto)
                 .collect(Collectors.toList());
+    }
+    
+    @Override
+    @Transactional
+    public MatchEventDto processMatchEvent(String matchId, MatchEventDto eventDto, String userId) {
+        // Convert String matchId to UUID
+        UUID matchUuid = UUID.fromString(matchId);
+        
+        // Find the match
+        Match match = matchPersistencePort.findById(matchUuid)
+                .orElseThrow(() -> new IllegalArgumentException("Match not found with ID: " + matchId));
+        
+        // Create a domain event from the DTO
+        MatchEvent event = new MatchEvent();
+        event.setId(UUID.randomUUID());
+        event.setMatchId(matchUuid);
+        event.setType(MatchEventType.valueOf(eventDto.getType()));
+        event.setTimestamp(LocalDateTime.now());
+        event.setData(eventDto.getData());
+        event.setUserId(userId);
+        
+        // Process the event based on its type
+        switch (event.getType()) {
+            case GOAL:
+                // If it's a goal event, update the score
+                boolean isHomeTeam = Boolean.parseBoolean(eventDto.getData().getOrDefault("isHomeTeam", "false"));
+                int homeScore = match.getHomeScore();
+                int awayScore = match.getAwayScore();
+                
+                if (isHomeTeam) {
+                    homeScore++;
+                } else {
+                    awayScore++;
+                }
+                
+                matchDomainService.updateScore(match, homeScore, awayScore);
+                break;
+            case YELLOW_CARD:
+            case RED_CARD:
+                // Process card event
+                // No score update needed
+                break;
+            case SUBSTITUTION:
+                // Process substitution event
+                // No score update needed
+                break;
+            case MATCH_START:
+            case MATCH_END:
+                // Process match status events
+                // No score update needed
+                break;
+            default:
+                // Handle other event types
+                break;
+        }
+        
+        // Add the event to the match
+        match.getEvents().add(event);
+        
+        // Save the updated match
+        Match savedMatch = matchPersistencePort.save(match);
+        
+        // Return the processed event as DTO
+        return matchMapper.toEventDto(event);
     }
 }

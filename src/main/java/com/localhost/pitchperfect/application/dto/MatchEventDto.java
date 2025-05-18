@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -23,4 +25,5 @@ public class MatchEventDto {
     private PlayerDto secondaryPlayer;
     private LocalDateTime timestamp;
     private int matchMinute;
+    private Map<String, String> data = new HashMap<>();
 }

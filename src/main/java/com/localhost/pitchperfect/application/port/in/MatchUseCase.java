@@ -117,4 +117,14 @@ public interface MatchUseCase {
      * @return a list of match event DTOs
      */
     List<MatchEventDto> getMatchEvents(UUID matchId);
+    
+    /**
+     * Process a match event.
+     *
+     * @param matchId the match ID
+     * @param eventDto the match event DTO
+     * @param userId the user ID
+     * @return the processed match event DTO
+     */
+    MatchEventDto processMatchEvent(String matchId, MatchEventDto eventDto, String userId);
 }

@@ -1,8 +1,11 @@
 package com.localhost.pitchperfect.domain.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -10,14 +13,24 @@ import java.util.UUID;
  * Core domain entity for tracking match events.
  */
 @Getter
+@Setter
 public class MatchEvent {
-    private final UUID id;
-    private final MatchEventType type;
-    private final String description;
-    private final Player primaryPlayer;
-    private final Player secondaryPlayer;
-    private final LocalDateTime timestamp;
-    private final int matchMinute;
+    private UUID id;
+    private UUID matchId;
+    private MatchEventType type;
+    private String description;
+    private Player primaryPlayer;
+    private Player secondaryPlayer;
+    private LocalDateTime timestamp;
+    private int matchMinute;
+    private String userId;
+    private Map<String, String> data = new HashMap<>();
+
+    public MatchEvent() {
+        this.id = UUID.randomUUID();
+        this.timestamp = LocalDateTime.now();
+        this.matchMinute = calculateMatchMinute();
+    }
 
     public MatchEvent(MatchEventType type, String description, Player primaryPlayer, Player secondaryPlayer) {
         this.id = UUID.randomUUID();
