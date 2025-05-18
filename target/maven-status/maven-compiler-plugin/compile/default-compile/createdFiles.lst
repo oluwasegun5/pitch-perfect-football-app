@@ -1,4 +1,5 @@
 com/localhost/pitchperfect/infrastructure/persistence/UserJpaRepository.class
+com/localhost/pitchperfect/domain/event/DomainEvent.class
 com/localhost/pitchperfect/application/dto/TypingIndicatorDto.class
 com/localhost/pitchperfect/application/dto/PlayerDto$PlayerDtoBuilder.class
 com/localhost/pitchperfect/infrastructure/persistence/MatchJpaRepository.class
@@ -43,6 +44,7 @@ com/localhost/pitchperfect/infrastructure/websocket/controller/WebSocketControll
 com/localhost/pitchperfect/application/port/in/TeamUseCase.class
 com/localhost/pitchperfect/application/dto/ChatMessageDto$SenderDto.class
 com/localhost/pitchperfect/application/service/ChatService.class
+com/localhost/pitchperfect/infrastructure/config/OpenApiConfig.class
 com/localhost/pitchperfect/application/dto/ChatMessageDto.class
 com/localhost/pitchperfect/infrastructure/persistence/MatchEventEntity.class
 com/localhost/pitchperfect/domain/repository/PlayerRepository.class
@@ -72,7 +74,6 @@ com/localhost/pitchperfect/application/service/MatchService$1.class
 com/localhost/pitchperfect/application/port/in/PresenceUseCase.class
 com/localhost/pitchperfect/application/port/out/TeamPersistencePort.class
 com/localhost/pitchperfect/domain/repository/TeamRepository.class
-com/localhost/pitchperfect/domain/service/impl/MatchDomainServiceImpl.class
 com/localhost/pitchperfect/domain/model/Position.class
 com/localhost/pitchperfect/infrastructure/websocket/config/WebSocketAuthChannelInterceptor.class
 com/localhost/pitchperfect/PitchPerfectApplication.class

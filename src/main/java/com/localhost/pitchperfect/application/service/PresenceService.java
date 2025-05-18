@@ -29,12 +29,11 @@ public class PresenceService implements PresenceUseCase {
 
     @Override
     public void userConnected(String userId) {
-        PresenceStatusDto status = new PresenceStatusDto(
-            userId,
-            presencePersistencePort.getUsernameById(userId),
-            PresenceStatusDto.PresenceStatus.ONLINE,
-            Instant.now()
-        );
+        PresenceStatusDto status = new PresenceStatusDto();
+        status.setUserId(userId);
+        status.setUsername(presencePersistencePort.getUsernameById(userId));
+        status.setStatus(PresenceStatusDto.PresenceStatus.ONLINE);
+        status.setTimestamp(Instant.now());
         
         presencePersistencePort.saveUserStatus(userId, status);
         
@@ -45,12 +44,11 @@ public class PresenceService implements PresenceUseCase {
 
     @Override
     public void userDisconnected(String userId) {
-        PresenceStatusDto status = new PresenceStatusDto(
-            userId,
-            presencePersistencePort.getUsernameById(userId),
-            PresenceStatusDto.PresenceStatus.OFFLINE,
-            Instant.now()
-        );
+        PresenceStatusDto status = new PresenceStatusDto();
+        status.setUserId(userId);
+        status.setUsername(presencePersistencePort.getUsernameById(userId));
+        status.setStatus(PresenceStatusDto.PresenceStatus.OFFLINE);
+        status.setTimestamp(Instant.now());
         
         presencePersistencePort.saveUserStatus(userId, status);
         
@@ -64,12 +62,11 @@ public class PresenceService implements PresenceUseCase {
 
     @Override
     public void userJoinedRoom(String userId, String roomId) {
-        PresenceStatusDto status = new PresenceStatusDto(
-            userId,
-            presencePersistencePort.getUsernameById(userId),
-            PresenceStatusDto.PresenceStatus.JOINED,
-            Instant.now()
-        );
+        PresenceStatusDto status = new PresenceStatusDto();
+        status.setUserId(userId);
+        status.setUsername(presencePersistencePort.getUsernameById(userId));
+        status.setStatus(PresenceStatusDto.PresenceStatus.JOINED);
+        status.setTimestamp(Instant.now());
         
         // Save the subscription
         String subscriptionId = userId + ":" + roomId;
@@ -83,12 +80,11 @@ public class PresenceService implements PresenceUseCase {
 
     @Override
     public void userLeftRoom(String userId, String roomId) {
-        PresenceStatusDto status = new PresenceStatusDto(
-            userId,
-            presencePersistencePort.getUsernameById(userId),
-            PresenceStatusDto.PresenceStatus.LEFT,
-            Instant.now()
-        );
+        PresenceStatusDto status = new PresenceStatusDto();
+        status.setUserId(userId);
+        status.setUsername(presencePersistencePort.getUsernameById(userId));
+        status.setStatus(PresenceStatusDto.PresenceStatus.LEFT);
+        status.setTimestamp(Instant.now());
         
         // Remove the subscription
         String subscriptionId = userId + ":" + roomId;

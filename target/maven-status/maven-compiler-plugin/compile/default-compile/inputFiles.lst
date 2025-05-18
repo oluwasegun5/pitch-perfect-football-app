@@ -1,5 +1,6 @@
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/application/dto/MatchDto.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/application/dto/PlayerDto.java
+/home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/domain/event/DomainEvent.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/domain/model/Player.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/domain/service/MatchDomainService.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/application/service/PlayerService.java
@@ -8,6 +9,7 @@
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/application/port/in/TeamUseCase.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/application/dto/ChatMessageDto.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/application/port/out/TeamPersistencePort.java
+/home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/infrastructure/config/OpenApiConfig.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/infrastructure/security/JwtTokenProvider.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/application/dto/TeamDto.java
 /home/ubuntu/projects/pitch-perfect-football-app/src/main/java/com/localhost/pitchperfect/infrastructure/redis/adapter/RedisPersistenceAdapter.java

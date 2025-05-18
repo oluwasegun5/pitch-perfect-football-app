@@ -1,6 +1,7 @@
 package com.localhost.pitchperfect.infrastructure.websocket.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
@@ -19,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     private final WebSocketPresenceChannelInterceptor webSocketPresenceChannelInterceptor;
 
     public WebSocketConfig(WebSocketAuthChannelInterceptor webSocketAuthChannelInterceptor,
-                          WebSocketPresenceChannelInterceptor webSocketPresenceChannelInterceptor) {
+                          @Lazy WebSocketPresenceChannelInterceptor webSocketPresenceChannelInterceptor) {
         this.webSocketAuthChannelInterceptor = webSocketAuthChannelInterceptor;
         this.webSocketPresenceChannelInterceptor = webSocketPresenceChannelInterceptor;
     }
